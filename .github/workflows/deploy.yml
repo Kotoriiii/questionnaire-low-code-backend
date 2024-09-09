@@ -12,6 +12,16 @@ jobs:
       - name: Check out
         uses: actions/checkout@main
 
+      - name: Create env production file
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_ORIGIN: ${{secrets.ENV_ORIGIN}}
+          envkey_MONGO_URL: ${{secrets.ENV_MONGO_URL}}
+          envkey_SECRET_KEY: ${{ secrets.ENV_JWT_SECRET }}
+          directory: ./
+          file_name: .env.production
+          fail_on_empty: true
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
