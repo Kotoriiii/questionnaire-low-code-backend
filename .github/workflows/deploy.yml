@@ -13,14 +13,11 @@ jobs:
         uses: actions/checkout@main
 
       - name: Create env production file
-        uses: SpicyPizza/create-envfile@v2.0
-        with:
-          envkey_ORIGIN: ${{secrets.ENV_ORIGIN}}
-          envkey_MONGO_URL: ${{secrets.ENV_MONGO_URL}}
-          envkey_SECRET_KEY: ${{ secrets.ENV_JWT_SECRET }}
-          directory: ./
-          file_name: .env.production
-          fail_on_empty: true
+        run: |
+          touch .env.production
+          echo ORIGIN=${{secrets.ENV_ORIGIN}} >> .env.production
+          echo MONGO_URL=${{secrets.ENV_MONGO_URL}} >> .env.production
+          echo JWT_SECRET=${{secrets.ENV_JWT_SECRET}} >> .env.production
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -34,7 +31,7 @@ jobs:
           registry: ${{ secrets.ALIYUN_REGISTRY_URL }}
           username: ${{ secrets.ALIYUN_ACCESS_USERID }}
           password: ${{ secrets.ALIYUN_ACCESS_PASSWORD }}
-          
+
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
