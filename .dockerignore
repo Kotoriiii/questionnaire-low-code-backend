@@ -1,5 +1,9 @@
 .dockerignore
-Dockerfile
+dockerfile
 node_modules
 npm-debug.log
+README.md
+.git
+.gitignore
 dist
+test
