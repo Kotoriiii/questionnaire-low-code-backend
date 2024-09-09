@@ -59,6 +59,8 @@ RUN adduser --system --uid 1001 nestjs
 COPY --chown=nestjs:nodejs --from=build /usr/src/app/node_modules ./node_modules
 COPY --chown=nestjs:nodejs --from=build /usr/src/app/dist ./dist
 
+USER nestjs
+
 EXPOSE 3005
 
 CMD [ "node", "dist/src/main.js" ]
