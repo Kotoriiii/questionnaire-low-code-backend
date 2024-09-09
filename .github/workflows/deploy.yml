@@ -18,6 +18,7 @@ jobs:
           echo ORIGIN=${{secrets.ENV_ORIGIN}} >> .env.production
           echo MONGO_URL=${{secrets.ENV_MONGO_URL}} >> .env.production
           echo JWT_SECRET=${{secrets.ENV_JWT_SECRET}} >> .env.production
+          cat .env.production
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
