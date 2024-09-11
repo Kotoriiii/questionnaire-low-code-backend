@@ -52,4 +52,5 @@ jobs:
             sudo docker pull ${{ secrets.ALIYUN_REGISTRY_TAG }}
             sudo docker container stop ${{secrets.ALIYUN_CONTAINER_NAME}}  || true
             sudo docker container rm ${{secrets.ALIYUN_CONTAINER_NAME}}  || true
-            sudo docker run -it -d --network myapp --name ${{secrets.ALIYUN_CONTAINER_NAME}} -p ${{secrets.ALIYUN_CONTAINER_BIND_PORT}} ${{ secrets.ALIYUN_REGISTRY_TAG }}
+            sudo docker image rm ${{secrets.ALIYUN_REGISTRY_TAG}} || true
+            sudo docker run -it -d --network myapp --read-only --memory 256m --name ${{secrets.ALIYUN_CONTAINER_NAME}} -p ${{secrets.ALIYUN_CONTAINER_BIND_PORT}} ${{ secrets.ALIYUN_REGISTRY_TAG }}
